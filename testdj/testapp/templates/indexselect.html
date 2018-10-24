@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p>{{ rlt }}</p>
+
+
+    <form action="/select-post" method="post">
+        {% csrf_token %}
+        <input type="text" name="q">
+
+
+
+        <select id="first" onChange="change()">
+           <option selected="selected">河北</option>
+           <option>北京</option>
+        </select>
+
+        <select id="second">
+           <option selected="selected">石家庄</option>>
+           <option>保定</option>
+           <option selected="selected">邯郸</option>
+        </select>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+    function change()
+    {
+       var x = document.getElementById("first");
+       var y = document.getElementById("second");
+       y.options.length = 0; // 清除second下拉框的所有内容
+       if(x.selectedIndex == 0)
+       {
+            y.options.add(new Option("黄冈", "0"));
+            y.options.add(new Option("武汉", "1", false, true));  // 默认选中省会城市
+       }
+
+       if(x.selectedIndex == 1)
+       {
+            y.options.add(new Option("深圳", "0"));
+            y.options.add(new Option("广州", "1", false, true));  // 默认选中省会城市
+            y.options.add(new Option("肇庆", "2"));
+       }
+
+    }
+    </script>
+
+</body>
+</html>
